@@ -1,19 +1,23 @@
 (function() {
-  var compile, doc, el, helpers, render, tag, templates, _fn, _i, _len, _ref,
+  var compile, ctx, doc, el, helpers, render, tag, templates, _fn, _i, _len, _ref,
     __slice = Array.prototype.slice;
 
   doc = document;
 
   el = null;
 
+  ctx = null;
+
   templates = {};
 
   helpers = {
     partial: function(tmpl, context) {
-      var tmp, _ref;
+      var tmp, tmpCtx, _ref;
       tmp = el;
-      render(tmpl, context);
-      _ref = [el, tmpEl], tmp = _ref[0], el = _ref[1];
+      tmpCtx = ctx;
+      render(tmpl, context || ctx);
+      ctx = tmpCtx;
+      _ref = [el, tmp], tmp = _ref[0], el = _ref[1];
       el.appendChild(tmp);
     }
   };
@@ -38,7 +42,7 @@
         arg = args[_j];
         if (typeof arg === 'function') {
           _ref3 = [el, subEl], subEl = _ref3[0], el = _ref3[1];
-          arg = arg();
+          arg = arg.call(ctx);
           _ref4 = [el, subEl], subEl = _ref4[0], el = _ref4[1];
         }
         if (typeof arg === 'string') subEl.appendChild(doc.createTextNode(arg));
@@ -67,7 +71,7 @@
   };
 
   render = function(tmpl, context) {
-    return templates[tmpl](context);
+    return templates[tmpl](ctx = context);
   };
 
   this.ckdom = {
