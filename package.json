@@ -1,0 +1,11 @@
+{
+  "name": "ckdom",
+  "version": "0.1.0",
+  "description": "lightweight browser-based variation of coffeekup templating",
+  "author": "Patrick DeHaan <me@pdehaan.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "coffee-script": ">= 1.1.1",
+    "uglify-js": ">= 1.2.5"
+  }
+}
