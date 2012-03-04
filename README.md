@@ -15,7 +15,7 @@ Example
 
 ```coffeescript
 ckdom.compile 'hello', ->
-  h1 "Hello #{@name or 'World'}!"
+  h1 class: 'hello', "Hello #{@name or 'World'}!"
   partial 'note', named: @name?
 
 ckdom.compile 'note', ->
@@ -31,7 +31,7 @@ It's also possible write templates with regular javascript (as that's what the c
 
 ```javascript
 ckdom.compile('hello', function() {
-  h1("Hello " + (this.name || 'World') + "!");
+  h1({"class": 'hello'}, "Hello " + (this.name || 'World') + "!");
   partial('note', { named: this.name != null });
 });
 
@@ -43,7 +43,5 @@ ckdom.compile('note', function() {
   }
 });
 
-document.body.appendChild(ckdom.render('hello', {
-  name: 'Patrick'
-}));
+document.body.appendChild(ckdom.render('hello', { name: 'Patrick' }));
 ```
