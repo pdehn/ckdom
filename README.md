@@ -9,6 +9,7 @@ Notes
    document
  - strings are automagically converted into a TextNode
  - partials are supported using named templates (see example)
+ - the 'txt' helper creates a plain textNode
 
 Example
 ---

@@ -4,6 +4,9 @@ ctx = null
 templates = {}
 
 helpers =
+  txt: (text) ->
+    el.appendChild doc.createTextNode text
+    return
   partial: (tmpl, context) ->
     tmp = el
     tmpCtx = ctx

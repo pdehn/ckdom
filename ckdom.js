@@ -11,6 +11,9 @@
   templates = {};
 
   helpers = {
+    txt: function(text) {
+      el.appendChild(doc.createTextNode(text));
+    },
     partial: function(tmpl, context) {
       var tmp, tmpCtx, _ref;
       tmp = el;
