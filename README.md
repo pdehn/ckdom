@@ -15,7 +15,7 @@ Example
 
 ```coffeescript
 ckdom.compile 'hello', ->
-  h1 "Hello {@name or 'World'}!"
+  h1 "Hello #{@name or 'World'}!"
   partial 'note', named: @name?
 
 ckdom.compile 'note', ->
@@ -25,4 +25,25 @@ ckdom.compile 'note', ->
     p "What's your name?"
 
 document.body.appendChild ckdom.render 'hello', name: 'Patrick'
+```
+
+It's also possible write templates with regular javascript (as that's what the coffeescript gets compiled to anyway), things just get more verbose.
+
+```javascript
+ckdom.compile('hello', function() {
+  h1("Hello " + (this.name || 'World') + "!");
+  partial('note', { named: this.name != null });
+});
+
+ckdom.compile('note', function() {
+  if (this.named) {
+    p("Isn't it a nice day?");
+  } else {
+    p("What's your name?");
+  }
+});
+
+document.body.appendChild(ckdom.render('hello', {
+  name: 'Patrick'
+}));
 ```
